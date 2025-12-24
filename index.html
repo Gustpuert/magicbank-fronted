@@ -1,203 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Magicbank University · Campus</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>MagicBank Academy · Cocina</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #F4F6FA;
-  color: #333;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fa;
+      color: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
 
-/* NAV */
-nav {
-  background: #0A1F44;
-  padding: 15px;
-  text-align: center;
-}
-nav a {
-  color: #C9A14A;
-  margin: 0 14px;
-  text-decoration: none;
-  font-weight: bold;
-}
+    header {
+      background: #0a1f44;
+      color: #c9a14a;
+      padding: 18px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+    }
 
-/* HEADER */
-header {
-  background: linear-gradient(135deg, #0A1F44, #102E6A);
-  color: white;
-  padding: 80px 20px;
-  text-align: center;
-}
+    main {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
 
-/* SECTIONS */
-section {
-  max-width: 1200px;
-  margin: 70px auto;
-  padding: 0 20px;
-}
-h2 {
-  color: #0A1F44;
-}
+    #chat {
+      flex: 1;
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      overflow-y: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      margin-bottom: 15px;
+    }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-}
+    .msg {
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
 
-/* CARD */
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-}
-.card h3 {
-  color: #0A1F44;
-}
+    .user {
+      font-weight: bold;
+      color: #0a1f44;
+    }
 
-/* BUTTON */
-.button {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 14px 22px;
-  background: #C9A14A;
-  color: #0A1F44;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-}
+    .tutor {
+      color: #333;
+    }
 
-/* FOOTER */
-footer {
-  background: #0A1F44;
-  color: #ccc;
-  text-align: center;
-  padding: 30px;
-  margin-top: 90px;
-}
-</style>
+    footer {
+      display: flex;
+      padding: 15px;
+      background: #ffffff;
+      border-top: 1px solid #ddd;
+      align-items: center;
+    }
+
+    textarea {
+      flex: 1;
+      resize: none;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      margin-left: 8px;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #c9a14a;
+      color: #0a1f44;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button.mic {
+      background: #0a1f44;
+      color: #c9a14a;
+      font-size: 16px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#facultades">Facultades</a>
-  <a href="#council">Council</a>
-  <a href="#herramientas">Herramientas</a>
-</nav>
-
-<!-- HEADER -->
 <header>
-  <h1>Magicbank University · Campus</h1>
-  <p>Facultades · Súper Tutores · Council · Herramientas Supreme</p>
+  MagicBank Academy · Cocina
 </header>
 
-<!-- FACULTADES -->
-<section id="facultades">
-  <h2>Facultades y Súper Tutores Magic Pro</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>Administración y Negocios</h3>
-      <p>Súper Administrador Magic Tutor Pro · Estrategia y negocios globales.</p>
-      <a class="button" href="https://chatgpt.com/g/g-6934d1a2900c8191ab3aafa382225a65-superadministrador-magic-tutor-pro" target="_blank">
-        Acceder al Súper Tutor
-      </a>
-    </div>
-
-    <div class="card">
-      <h3>Derecho</h3>
-      <p>Abogadus Magic Tutor Pro · Marco jurídico internacional.</p>
-      <a class="button" href="https://chatgpt.com/g/g-69345443f0848191996abc2cf7cc9786-abogadus-magic-tutor-pro" target="_blank">
-        Acceder al Súper Tutor
-      </a>
-    </div>
-
-    <div class="card">
-      <h3>Contaduría y Finanzas</h3>
-      <p>SuperContador Magic Tutor Pro · Finanzas y Pensiones Mágicas.</p>
-      <a class="button" href="https://chatgpt.com/g/g-6934af28002481919dd9799d7156869f-supercontador-magic-tutor-pro" target="_blank">
-        Acceder al Súper Tutor
-      </a>
-    </div>
-
-    <div class="card">
-      <h3>Marketing</h3>
-      <p>SuperMarketer Magic Tutor Pro · Crecimiento y posicionamiento.</p>
-      <a class="button" href="https://chatgpt.com/g/g-693703fa8a008191b91730375fcc4d64-supermarketer-magic-tutor-pro" target="_blank">
-        Acceder al Súper Tutor
-      </a>
-    </div>
-
-    <div class="card">
-      <h3>Desarrollo de Software</h3>
-      <p>Super Desarrollador Magic Tutor Pro · Tecnología aplicada.</p>
-      <a class="button" href="https://chatgpt.com/g/g-69356a835d888191bf80e11a11e39e2e-super-desarrollador-magic-tutor-pro" target="_blank">
-        Acceder al Súper Tutor
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- COUNCIL -->
-<section id="council">
-  <div class="card">
-    <h2>Magicbank Council · Consejo de Sabios</h2>
-    <p>
-      Espacio estratégico donde convergen todos los Súper Tutores Magic Pro
-      para análisis integral, asesoría empresarial y toma de decisiones
-      de alto nivel.
-    </p>
-    <a class="button" href="https://chatgpt.com/g/g-693b0820918c819199d3922ac8bfd57f-magicbank-council" target="_blank">
-      Acceder al Magicbank Council
-    </a>
-  </div>
-</section>
-
-<!-- HERRAMIENTAS -->
-<section id="herramientas">
-  <h2>Herramientas Supreme</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>SuperTraductor Magic Tutor Pro</h3>
-      <p>
-        Tutor lingüístico de nivel mundial para aprendizaje de idiomas,
-        preparación de viajes y acompañamiento en tiempo real.
-      </p>
-      <a class="button" href="https://chatgpt.com/g/g-6936d30471708191b9ac5f00163d8605-supertraductor-magic-tutor-pro" target="_blank">
-        Acceder al SuperTraductor
-      </a>
-    </div>
-
-    <div class="card">
-      <h3>BienestarTutor Magic Pro</h3>
-      <p>
-        Acompañamiento integral para claridad mental, equilibrio emocional
-        y orientación preventiva.
-      </p>
-      <a class="button" href="https://chatgpt.com/g/g-693e3bb199b881919ad636fff9084249-bienestartutor-pro" target="_blank">
-        Acceder al BienestarTutor
-      </a>
-    </div>
-
-  </div>
-</section>
+<main>
+  <div id="chat"></div>
+</main>
 
 <footer>
-© Magicbank University · Campus Interno
+  <textarea id="input" rows="2" placeholder="Escribe o habla con el tutor..."></textarea>
+  <button class="mic" id="mic">🎤</button>
+  <button id="send">Enviar</button>
 </footer>
+
+<script>
+  const chat = document.getElementById("chat");
+  const input = document.getElementById("input");
+  const sendBtn = document.getElementById("send");
+  const micBtn = document.getElementById("mic");
+
+  const BACKEND_URL =
+    "https://magic-bank-backend-production-713e.up.railway.app/api/magicbank/aula";
+
+  function addMessage(text, className) {
+    const div = document.createElement("div");
+    div.className = "msg " + className;
+    div.textContent = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  async function sendMessage(message) {
+    addMessage("Tú: " + message, "user");
+
+    try {
+      const response = await fetch(BACKEND_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          course_id: "cocina",
+          message,
+          profile: { preferred_name: "Gustavo" }
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.text) {
+        addMessage("Tutor: " + data.text, "tutor");
+      } else {
+        addMessage("Error en respuesta del tutor.", "tutor");
+      }
+    } catch (err) {
+      addMessage("Error de conexión con el backend.", "tutor");
+      console.error(err);
+    }
+  }
+
+  sendBtn.addEventListener("click", () => {
+    const message = input.value.trim();
+    if (!message) return;
+    input.value = "";
+    sendMessage(message);
+  });
+
+  /* 🎤 MICRÓFONO (Web Speech API) */
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.lang = "es-ES";
+    recognition.interimResults = false;
+    recognition.continuous = false;
+
+    micBtn.addEventListener("click", () => {
+      recognition.start();
+    });
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      input.value = transcript;
+    };
+
+    recognition.onerror = (event) => {
+      alert("Error con el micrófono: " + event.error);
+    };
+  } else {
+    micBtn.disabled = true;
+    micBtn.textContent = "🚫";
+  }
+</script>
 
 </body>
 </html>
