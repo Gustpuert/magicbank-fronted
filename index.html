@@ -44,16 +44,6 @@
 
     .msg {
       margin-bottom: 12px;
-      line-height: 1.4;
-    }
-
-    .user {
-      font-weight: bold;
-      color: #0a1f44;
-    }
-
-    .tutor {
-      color: #333;
     }
 
     footer {
@@ -66,32 +56,19 @@
 
     textarea {
       flex: 1;
-      resize: none;
       padding: 10px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 14px;
     }
 
     button {
       margin-left: 8px;
       padding: 10px 14px;
-      border: none;
       border-radius: 8px;
+      border: none;
       background: #c9a14a;
-      color: #0a1f44;
       font-weight: bold;
       cursor: pointer;
-    }
-
-    button.mic {
-      background: #0a1f44;
-      color: #c9a14a;
-      font-size: 16px;
-    }
-
-    button:hover {
-      opacity: 0.9;
     }
   </style>
 </head>
@@ -107,31 +84,35 @@
 </main>
 
 <footer>
-  <textarea id="input" rows="2" placeholder="Escribe o habla con el tutor..."></textarea>
-  <button class="mic" id="mic">🎤</button>
-  <button id="send">Enviar</button>
+  <textarea id="input" placeholder="Escribe al tutor..."></textarea>
+  <button onclick="sendMessage()">Enviar</button>
 </footer>
 
 <script>
-  const chat = document.getElementById("chat");
-  const input = document.getElementById("input");
-  const sendBtn = document.getElementById("send");
-  const micBtn = document.getElementById("mic");
-
-  // 🔴 URL CORRECTA DEL BACKEND (RUTA REAL)
   const BACKEND_URL =
     "https://magic-bank-backend-production-713e.up.railway.app/api/magicbank/aula/texto";
 
-  function addMessage(text, className) {
+  function addMessage(text) {
+    const chat = document.getElementById("chat");
     const div = document.createElement("div");
-    div.className = "msg " + className;
     div.textContent = text;
     chat.appendChild(div);
-    chat.scrollTop = chat.scrollHeight;
   }
 
-  async function sendMessage(message) {
-    addMessage("Tú: " + message, "user");
+  async function sendMessage() {
+    alert("CLICK DETECTADO – JS FUNCIONA");
+    console.log("Send presionado");
+
+    const input = document.getElementById("input");
+    const message = input.value.trim();
+
+    if (!message) {
+      alert("Mensaje vacío");
+      return;
+    }
+
+    addMessage("Tú: " + message);
+    input.value = "";
 
     try {
       const response = await fetch(BACKEND_URL, {
@@ -145,48 +126,12 @@
       });
 
       const data = await response.json();
+      addMessage("Tutor: " + (data.text || "Sin respuesta"));
 
-      if (data.text) {
-        addMessage("Tutor: " + data.text, "tutor");
-      } else {
-        addMessage("Error en respuesta del tutor.", "tutor");
-      }
-    } catch (err) {
-      addMessage("Error de conexión con el backend.", "tutor");
+    } catch (error) {
+      alert("ERROR DE CONEXIÓN AL BACKEND");
+      console.error(error);
     }
-  }
-
-  sendBtn.addEventListener("click", () => {
-    const message = input.value.trim();
-    if (!message) return;
-    input.value = "";
-    sendMessage(message);
-  });
-
-  /* 🎤 MICRÓFONO */
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  if (SpeechRecognition) {
-    const recognition = new SpeechRecognition();
-    recognition.lang = "es-ES";
-    recognition.interimResults = false;
-    recognition.continuous = false;
-
-    micBtn.addEventListener("click", () => {
-      recognition.start();
-    });
-
-    recognition.onresult = (event) => {
-      input.value = event.results[0][0].transcript;
-    };
-
-    recognition.onerror = () => {
-      alert("Error con el micrófono");
-    };
-  } else {
-    micBtn.disabled = true;
-    micBtn.textContent = "🚫";
   }
 </script>
 
