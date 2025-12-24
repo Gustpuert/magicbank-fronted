@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>MagicBank Academy · Cocina</title>
+  <title>MagicBank Academy · Aula</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -10,7 +10,6 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f4f6fa;
-      color: #1a1a1a;
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -19,55 +18,51 @@
     header {
       background: #0a1f44;
       color: #c9a14a;
-      padding: 18px;
+      padding: 16px;
       text-align: center;
       font-weight: bold;
-      font-size: 18px;
-    }
-
-    main {
-      flex: 1;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
     }
 
     #chat {
       flex: 1;
-      background: white;
-      border-radius: 12px;
-      padding: 15px;
+      padding: 16px;
       overflow-y: auto;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      margin-bottom: 15px;
+      background: #ffffff;
     }
 
     .msg {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+    }
+
+    .user {
+      color: #0a1f44;
+      font-weight: bold;
+    }
+
+    .tutor {
+      color: #333;
     }
 
     footer {
       display: flex;
-      padding: 15px;
-      background: #ffffff;
-      border-top: 1px solid #ddd;
-      align-items: center;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      background: #fff;
     }
 
     textarea {
       flex: 1;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      resize: none;
+      padding: 8px;
+      font-size: 14px;
     }
 
     button {
       margin-left: 8px;
       padding: 10px 14px;
-      border-radius: 8px;
-      border: none;
-      background: #c9a14a;
       font-weight: bold;
+      background: #c9a14a;
+      border: none;
       cursor: pointer;
     }
   </style>
@@ -76,63 +71,60 @@
 <body>
 
 <header>
-  MagicBank Academy · Cocina
+  MagicBank Academy · Aula
 </header>
 
-<main>
-  <div id="chat"></div>
-</main>
+<div id="chat"></div>
 
 <footer>
-  <textarea id="input" placeholder="Escribe al tutor..."></textarea>
-  <button onclick="sendMessage()">Enviar</button>
+  <textarea id="input" rows="2" placeholder="Escribe al tutor..."></textarea>
+  <button id="send">Enviar</button>
 </footer>
 
 <script>
+  const chat = document.getElementById("chat");
+  const input = document.getElementById("input");
+  const sendBtn = document.getElementById("send");
+
   const BACKEND_URL =
     "https://magic-bank-backend-production-713e.up.railway.app/api/magicbank/aula/texto";
 
-  function addMessage(text) {
-    const chat = document.getElementById("chat");
+  function addMessage(text, cls) {
     const div = document.createElement("div");
+    div.className = "msg " + cls;
     div.textContent = text;
     chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
   }
 
-  async function sendMessage() {
-    alert("CLICK DETECTADO – JS FUNCIONA");
-    console.log("Send presionado");
-
-    const input = document.getElementById("input");
-    const message = input.value.trim();
-
-    if (!message) {
-      alert("Mensaje vacío");
-      return;
-    }
-
-    addMessage("Tú: " + message);
-    input.value = "";
+  async function sendMessage(message) {
+    addMessage("Tú: " + message, "user");
 
     try {
-      const response = await fetch(BACKEND_URL, {
+      const res = await fetch(BACKEND_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           course_id: "cocina",
-          message: message,
+          message,
           profile: { preferred_name: "Gustavo" }
         })
       });
 
-      const data = await response.json();
-      addMessage("Tutor: " + (data.text || "Sin respuesta"));
-
-    } catch (error) {
-      alert("ERROR DE CONEXIÓN AL BACKEND");
-      console.error(error);
+      const data = await res.json();
+      addMessage("Tutor: " + (data.text || "Sin respuesta"), "tutor");
+    } catch (e) {
+      addMessage("❌ Error conectando con el backend", "tutor");
+      console.error(e);
     }
   }
+
+  sendBtn.addEventListener("click", () => {
+    const msg = input.value.trim();
+    if (!msg) return;
+    input.value = "";
+    sendMessage(msg);
+  });
 </script>
 
 </body>
